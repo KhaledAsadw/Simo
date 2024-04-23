@@ -15,7 +15,7 @@ const defaultMenu = {
 ╭╼⪼ مرحبا بك في بوت ستوريات *%name* 
 父 *𝑻𝒐𝒕𝒂𝒍 𝑼𝒔𝒆𝒓:* %totalreg 
 父 *𝑼𝒑𝒕𝒊𝒎𝒆:* %muptime 
-父 *𝑪𝒓𝒆𝒂𝒕𝒐𝒓* Khaled Shatah 
+父 *𝑪𝒓𝒆𝒂𝒕𝒐𝒓* Khaled Shatah 🖤
 ╰─────────────⪼
 ────────────────────────────────────────────
 
@@ -272,8 +272,8 @@ contextInfo: {
 externalAdReply: {
 title: 'K H A L E D S H A T A H',
 body: "",
-thumbnailUrl: 'https://telegra.ph/file/27dfe370c433f44c5ad4c.jpg',
-sourceUrl: 'instagram.com/noureddine_ouafy',
+thumbnailUrl: 'https://telegra.ph/file/fc9e0d3384efb0a23498f.jpg',
+sourceUrl: 'instagram.com/kh_sh932',
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})
