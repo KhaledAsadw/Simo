@@ -33,7 +33,7 @@ const defaultMenu = {
   header: '┏━━⊜ *_%category_* ',
   body: '┃⋄ %cmd %isdiamond %isPremium',
   footer: '┗━━━━━━━━⬣\n',
-  after: '*إستخدامك للبوت بشكل صحيح يعني أنك تزيد من إحتمالية أن يبقى البوت شغالا لمدة أطول  *\n+963980677944 *\nhttps://instagram.com/kh_sh932',
+  after: '*إستخدامك للبوت بشكل صحيح يعني أنك تزيد من إحتمالية أن يبقى البوت شغالا لمدة أطول  *\nرقم صاحب البوت +963980677944 *\nhttps://chat.whatsapp.com/JxU1p4KoH671xSGkhB1DFN',
 }
 let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
