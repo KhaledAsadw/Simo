@@ -195,7 +195,7 @@ bbts()
 
 }
 handler.help = ['botclone']
-handler.tags = ['jadibot']
+handler.tags = ['jadibot','qrcode']
 handler.command = ['code', 'codigo', 'sercode' 'jadibot', ]
 handler.rowner = false
 
