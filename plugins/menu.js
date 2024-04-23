@@ -28,12 +28,12 @@ const defaultMenu = {
 ⏰ *Uptime:* %muptime  
 ┗━━━━━━━━━━⬣
 %readmore
-  ≡ *S I M O | E L A O U N Y 🖤*
+  ≡ *K A L E D  | S H A T A H 🖤*
 `.trimStart(),
   header: '┏━━⊜ *_%category_* ',
   body: '┃⋄ %cmd %isdiamond %isPremium',
   footer: '┗━━━━━━━━⬣\n',
-  after: '*إستخدامك للبوت بشكل صحيح يعني أنك تزيد من إحتمالية أن يبقى البوت شغالا لمدة أطول  *\n+212777554973 *\nhttps://instagram.com/simo__awni',
+  after: '*إستخدامك للبوت بشكل صحيح يعني أنك تزيد من إحتمالية أن يبقى البوت شغالا لمدة أطول  *\n+963980677944 *\nhttps://instagram.com/kh_sh932',
 }
 let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
@@ -139,7 +139,7 @@ externalAdReply: {
 title: 'SIMO ELAOUNY ♥',
 body: "أول بوت واتساب في العالم العربي 💖",
 thumbnailUrl: 'https://telegra.ph/file/fa4f0a953560a5149104d.jpg',
-sourceUrl: 'https://instagram.com/simo__awni',
+sourceUrl: 'https://instagram.com/kh_sh932',
 mediaType: 1,
 renderLargerThumbnail: true
 }}}, { quoted: m})
@@ -158,7 +158,7 @@ renderLargerThumbnail: true
 }
 handler.help = ['menu']
 handler.tags = ['infobot']
-handler.command = ['menu','m','list'] 
+handler.command = ['menu','m','ستوريات'] 
 handler.register = false
 
 
