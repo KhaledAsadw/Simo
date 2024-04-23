@@ -136,8 +136,8 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
 text: text,
 contextInfo: {
 externalAdReply: {
-title: 'SIMO ELAOUNY ♥',
-body: "أول بوت واتساب في العالم العربي 💖",
+title: 'Khaled Shatah ♥',
+body: " أول بوت واتساب في العالم العربي مجموعة ستوريات 💖",
 thumbnailUrl: 'https://telegra.ph/file/fc9e0d3384efb0a23498f.jpg',
 sourceUrl: 'https://instagram.com/kh_sh932',
 mediaType: 1,
