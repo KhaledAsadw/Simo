@@ -1,7 +1,5 @@
-//By OMARCHARAF1 
-//www.guthub.com/omarcharaf1
+
 //instagram com/kh_sh932
-//JITOSSA ADMIN 
 
 
 import fetch from 'node-fetch';
