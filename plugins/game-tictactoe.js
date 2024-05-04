@@ -1,45 +1,16 @@
-import { format } from 'util'
-//import db from '../lib/database.js'
+import TicTacToe from '../lib/tictactoe.js'
 
-let debugMode = !1
-
-let winScore = 4999
-let playScore = 99
-
-export async function before(m) {
-    let ok
-    let isWin = !1
-    let isTie = !1
-    let isSurrender = !1
-    this.game = this.game ? this.game : {}
-    let room = Object.values(this.game).find(room => room.id && room.game && room.state && room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender) && room.state == 'PLAYING')
+let handler = async (m, { conn, usedPrefix, command, text }) => {
+    conn.game = conn.game ? conn.game : {}
+    if (Object.values(conn.game).find(room => room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender))) throw `You are still in the game to restart the session write : *${usedPrefix}delttt*`
+    if (!text) throw `Put a number in the room`
+    let room = Object.values(conn.game).find(room => room.state === 'WAITING' && (text ? room.name === text : true))
+    // m.reply('[WIP Feature]')
     if (room) {
-        // m.reply(`[DEBUG]\n${parseInt(m.text)}`)
-        if (!/^([1-9]|(me)?nyerah|surr?ender)$/i.test(m.text))
-            return !0
-        isSurrender = !/^[1-9]$/.test(m.text)
-        if (m.sender !== room.game.currentTurn) { // nek wayahku
-            if (!isSurrender)
-                return !0
-        }
-        if (debugMode)
-            m.reply('[DEBUG]\n' + require('util').format({
-                isSurrender,
-                text: m.text
-            }))
-        if (!isSurrender && 1 > (ok = room.game.turn(m.sender === room.game.playerO, parseInt(m.text) - 1))) {
-            m.reply({
-                '-3': 'The game is over',
-                '-2': 'Inválid',
-                '-1': 'Position inválid',
-                0: 'Position inválid',
-            }[ok])
-            return !0
-        }
-        if (m.sender === room.game.winner)
-            isWin = true
-        else if (room.game.board === 511)
-            isTie = true
+        m.reply('✅ mate found')
+        room.o = m.chat
+        room.game.playerO = m.sender
+        room.state = 'PLAYING'
         let arr = room.game.render().map(v => {
             return {
                 X: '❎',
@@ -55,43 +26,48 @@ export async function before(m) {
                 9: '9️⃣',
             }[v]
         })
-        if (isSurrender) {
-            room.game._currentTurn = m.sender === room.game.playerX
-            isWin = true
-        }
-        let winner = isSurrender ? room.game.currentTurn : room.game.winner
         let str = `
-${isWin ? `@${winner.split('@')[0]} You are the winner 🎉 *+${winScore} XP*` : isTie ? `Game over, with a draw *+${playScore} XP*` : `Now is your turn ${['❎', '⭕'][1 * room.game._currentTurn]} (@${room.game.currentTurn.split('@')[0]})`} 
-
+Waiting for @${room.game.currentTurn.split('@')[0]} as first player
+        
 ${arr.slice(0, 3).join('')}
 ${arr.slice(3, 6).join('')}
 ${arr.slice(6).join('')}
 
-▢ *PLAYER 1* ❎ : @${room.game.playerX.split('@')[0]} 
-▢ *PLAYER 2* ⭕ : @${room.game.playerO.split('@')[0]}
+▢ *Room ID* ${room.id}
 
-Type *surrender* to give up 
+▢ *Rules*
+‣ Make 3 rows of symbols vertically, horizontally or diagonally to win ‣ Type *surrender* to exit the game and be declared defeated
 `.trim()
-        let users = global.global.db.data.users
-        if ((room.game._currentTurn ^ isSurrender ? room.x : room.o) !== m.chat)
-            room[room.game._currentTurn ^ isSurrender ? 'x' : 'o'] = m.chat
-        const btn = isTie ? ['TicTacToe', '/ttt'] : ['Surrender', 'surrender']
-        if (room.x !== room.o)
-            await this.reply(room.x, str, m, {
-                mentions: this.parseMention(str)
-            })
-            await this.reply(room.o, str, m, {
-            mentions: this.parseMention(str)
+        if (room.x !== room.o) await conn.reply(room.x, str, m, {
+            mentions: conn.parseMention(str)
         })
-        if (isTie || isWin) {
-            users[room.game.playerX].exp += playScore
-            users[room.game.playerO].exp += playScore
-            if (isWin)
-                users[winner].exp += winScore - playScore
-            if (debugMode)
-                m.reply('[DEBUG]\n' + format(room))
-            delete this.game[room.id]
+        await conn.reply(room.o, str, m, {
+            mentions: conn.parseMention(str)
+        })
+    } else {
+        room = {
+            id: 'tictactoe-' + (+new Date),
+            x: m.chat,
+            o: '',
+            game: new TicTacToe(m.sender, 'o'),
+            state: 'WAITING'
         }
+        if (text) room.name = text
+        
+     conn.reply(m.chat, `⏳ *waiting for partner*\nType the following command to accept
+▢ *${usedPrefix + command} ${text}*
+
+🎁 Reward:  *4999 XP*`, m, {
+            mentions: conn.parseMention(text)
+        })
+        
+   conn.game[room.id] = room
     }
-    return !0
+    
 }
+
+handler.help = ['tictactoe <tag number>']
+handler.tags = ['game']
+handler.command = ['tictactoe', 'ttc', 'ttt', 'xo']
+
+export default handler
