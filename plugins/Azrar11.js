@@ -24,7 +24,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
                             header: 'القائمة',
                             title: 'الاوامر',
                             description: '',
-                            id: '.menu'
+                            id: '.khaled'
                           },
                           {
                             header: 'الذكاء الصناعي',
