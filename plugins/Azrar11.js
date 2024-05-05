@@ -34,7 +34,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
                           },
                           {
                             header: 'تاغ جماعي',
-                            title: '🖤',
+                            title: 'التفاعل🖤 ᤑ',
                             description: '',
                             id: '.hidetag'
                           },
